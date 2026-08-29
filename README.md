@@ -118,8 +118,12 @@ component paths.
 Train G1 Sonic:
 
 ```bash
-NUM_GPUS=1 \
-DATASET_PATH=/path/to/g1_sonic_data \
+MAX_STEPS=5000 \
+NUM_GPUS=8 \
+BATCH_SIZE=64 \
+GRADIENT_ACCUMULATION_STEPS=1 \
+EXPERIMENT_NAME=helm_g1_sonic \
+DATA_ROOT=/path/to/g1_sonic_data \
 PRETRAIN_PATH=data/helm_pretrain \
 bash scripts/train_helm_g1_sonic.sh
 ```
@@ -127,7 +131,11 @@ bash scripts/train_helm_g1_sonic.sh
 Train RoboCasa GR1 tabletop on every dataset directory under `DATA_ROOT`:
 
 ```bash
-NUM_GPUS=1 \
+MAX_STEPS=60000 \
+NUM_GPUS=8 \
+BATCH_SIZE=64 \
+GRADIENT_ACCUMULATION_STEPS=1 \
+EXPERIMENT_NAME=helm_robocasa_unified \
 DATA_ROOT=/path/to/lerobot_data \
 PRETRAIN_PATH=data/helm_pretrain \
 bash scripts/train_helm_robocasa.sh
