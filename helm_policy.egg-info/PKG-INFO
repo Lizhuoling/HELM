@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: helm-policy
+Version: 0.1.0
+Summary: HELM humanoid policy training and RoboCasa evaluation
+Requires-Python: ==3.10.*
+License-File: LICENSE
+Requires-Dist: albumentations==1.4.18
+Requires-Dist: huggingface-hub[cli]
+Requires-Dist: opencv-python-headless<4.13,>=4.5
+Requires-Dist: av==16.1.0
+Requires-Dist: diffusers==0.35.1
+Requires-Dist: accelerate
+Requires-Dist: hydra-core
+Requires-Dist: dm-tree
+Requires-Dist: lmdb==1.7.5
+Requires-Dist: msgpack==1.1.0
+Requires-Dist: msgpack-numpy==0.4.8
+Requires-Dist: pandas==2.2.3
+Requires-Dist: peft==0.17.1
+Requires-Dist: termcolor==3.2.0
+Requires-Dist: torch==2.7.1
+Requires-Dist: torchvision==0.22.1
+Requires-Dist: transformers==4.57.3
+Requires-Dist: tyro==0.9.17
+Requires-Dist: click==8.1.8
+Requires-Dist: datasets==3.6.0
+Requires-Dist: cryptography>=44.0.0
+Requires-Dist: einops==0.8.1
+Requires-Dist: gitpython==3.1.46
+Requires-Dist: jsonlines==4.0.0
+Requires-Dist: gymnasium==1.2.2
+Requires-Dist: matplotlib==3.10.1
+Requires-Dist: numpy==1.26.4
+Requires-Dist: omegaconf==2.3.0
+Requires-Dist: scipy==1.15.3
+Requires-Dist: torchcodec==0.4.0
+Requires-Dist: wandb==0.23.0
+Requires-Dist: pyzmq==27.0.1
+Requires-Dist: deepspeed==0.17.6; sys_platform == "linux" and platform_machine == "x86_64"
+Requires-Dist: flash-attn==2.7.4.post1; sys_platform == "linux" and platform_machine == "x86_64"
+Provides-Extra: dev
+Requires-Dist: boto3; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: ipython; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-timeout; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Dynamic: license-file
