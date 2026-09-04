@@ -1,7 +1,7 @@
 # HELM
 
-HELM is a humanoid vision-language-action policy with a vision-language
-backbone, a world-action context module, and a diffusion action head. This
+HELM is a humanoid vision-language-action policy with a world-action context backbone, a vision-language
+feature extractor, and a diffusion action head. This
 repository contains HELM training, control-signal inference, and RoboCasa GR1
 tabletop simulation evaluation.
 
@@ -10,8 +10,14 @@ Supported embodiments:
 - `UNITREE_G1_SONIC` for G1 demonstrations and control-signal inference.
 - `ROBOCASA_GR1_TABLETOP` for RoboCasa GR1 training and simulation evaluation.
 
-The inference API predicts action chunks. Robot drivers, safety checks, timing,
-and closed-loop control are intentionally outside this repository.
+The inference API predicts action chunks.
+
+## Getting started
+
+- Follow [`INSTALL.md`](INSTALL.md) to create the Conda environment and install
+  HELM and the optional RoboCasa simulation dependencies.
+- See [`DATA.md`](DATA.md) for dataset sources, access requirements, and the
+  expected directory layout.
 
 ## Repository layout
 
@@ -30,44 +36,12 @@ scripts/         supported training, inference, and evaluation commands
 The public policy class is `utils.policy.HelmPolicy`. Internal package paths are
 implementation details and do not require additional pretrained repositories.
 
-## Requirements
+## Data
 
-- Python 3.10
-- CUDA 12.8 and a CUDA GPU
-- A HELM pretraining bundle at `data/helm_pretrain`
-- Demonstrations in LeRobot v2 format
-
-Install the Python environment:
-
-```bash
-uv sync --all-extras
-```
-
-For the complete Conda, CUDA, PyTorch, FlashAttention, model/data, and
-RoboCasa setup sequence, see [`INSTALL.md`](INSTALL.md).
-
-HELM requires FFmpeg 4-7 for `torchcodec==0.4.0`. If video loading reports
-`Could not load libtorchcodec`, activate the `helm` environment and run
-`conda install -c conda-forge "ffmpeg=7.*" -y`, then retry.
-
-RoboCasa evaluation additionally requires the GR1 tabletop environment and its
-assets. Keep it outside the HELM source tree or clone it into the ignored
-`external_dependencies` directory:
-
-```bash
-mkdir -p external_dependencies
-git clone https://github.com/robocasa/robocasa-gr1-tabletop-tasks \
-  external_dependencies/robocasa-gr1-tabletop-tasks
-uv pip install "git+https://github.com/ARISE-Initiative/robosuite.git@v1.5.1"
-uv pip install -e external_dependencies/robocasa-gr1-tabletop-tasks
-python external_dependencies/robocasa-gr1-tabletop-tasks/robocasa/scripts/\
-download_tabletop_assets.py -y
-```
-
-## Data contract
-
-Each dataset root must contain LeRobot v2 metadata, parquet trajectory data,
-and video files. HELM reads modality keys from the selected embodiment config.
+Dataset download instructions are maintained in [`DATA.md`](DATA.md). Each
+downstream dataset must use LeRobot v2 format and contain its metadata, Parquet
+trajectory data, and video files. HELM reads modality keys from the selected
+embodiment config.
 
 `UNITREE_G1_SONIC` expects:
 
@@ -170,7 +144,7 @@ dictionary contains float32 control-signal chunks with shape `(B, horizon, D)`.
 To keep model dependencies on a GPU server:
 
 ```bash
-uv run python scripts/serve_helm.py \
+python scripts/serve_helm.py \
   --model-path outputs/helm_g1_sonic/checkpoint-20000 \
   --embodiment-tag UNITREE_G1_SONIC \
   --pretrain-path data/helm_pretrain
@@ -205,8 +179,8 @@ success rates to `metrics.csv`.
 Run formatting and static checks:
 
 ```bash
-uv run ruff format --check utils scripts
-uv run ruff check utils scripts
+ruff format --check utils scripts
+ruff check utils scripts
 python -m compileall -q utils scripts
 ```
 
@@ -214,7 +188,7 @@ The GPU benchmark consumes one recorded demonstration step and measures model
 latency without data-loading time:
 
 ```bash
-uv run python scripts/benchmark_helm.py --help
+python scripts/benchmark_helm.py --help
 ```
 
 ## License

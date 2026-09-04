@@ -72,11 +72,6 @@ second time:
 pip install -e . --no-deps
 ```
 
-The repository also contains a `uv` configuration. After the Conda setup,
-`uv sync --all-extras` is an alternative for reproducing the Python package
-environment, but it may resolve/download the CUDA and FlashAttention wheels
-again.
-
 ## Check the installation
 
 ```bash
