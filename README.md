@@ -16,6 +16,9 @@ The inference API predicts action chunks.
 
 - Follow [`INSTALL.md`](INSTALL.md) to create the Conda environment and install
   HELM and the optional RoboCasa simulation dependencies.
+- Download the pretrained HELM checkpoint from
+  [`Zhuoling98/helm_pretrain`](https://huggingface.co/Zhuoling98/helm_pretrain)
+  into `data/helm_pretrain` as described in `INSTALL.md`.
 - See [`DATA.md`](DATA.md) for dataset sources, access requirements, and the
   expected directory layout.
 
@@ -71,7 +74,9 @@ The cache is stored at `data/helm_pretrain/text_embeddings.pt`. The G1 Sonic
 launcher creates it automatically when absent; the RoboCasa launcher expects a
 cache covering all selected task datasets.
 
-The bundle must have this shape:
+The pretrained bundle from
+[`Zhuoling98/helm_pretrain`](https://huggingface.co/Zhuoling98/helm_pretrain)
+must have this shape after downloading:
 
 ```text
 data/helm_pretrain/

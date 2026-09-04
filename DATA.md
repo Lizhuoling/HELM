@@ -10,7 +10,7 @@ and accept their terms before downloading or redistributing any data.
 The pretrained world-action model uses the following public datasets. Download
 each dataset from its official project page:
 
-- [Ego4D](https://docs.ego4d-data.org/data/download/)
+- [Ego4D](https://ego4d-data.org/)
 - [Ego-Exo4D](https://docs.ego-exo4d-data.org/getting-started/)
 - [Nymeria](https://www.projectaria.com/datasets/nymeria/)
 - [Something-Something V2](https://www.qualcomm.com/developer/software/something-something-v-2-dataset)
@@ -49,12 +49,8 @@ the individual task datasets. Do not point it at the parent release directory.
 
 ## G1 demonstrations
 
-Our collected G1 demonstrations will be published as a Hugging Face dataset.
-The download location is not yet available:
-
-```text
-TODO: https://huggingface.co/datasets/<organization>/<g1-demonstrations>
-```
+Download the collected G1 demonstrations from the
+[HELM G1 dataset on Hugging Face](https://huggingface.co/datasets/Zhuoling98/HELM_g1_data).
 
 After downloading, point `DATASET_PATH` to the LeRobot dataset root:
 
