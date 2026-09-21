@@ -1,5 +1,8 @@
 # HELM
 
+This repository is the official implementation of the paper "*Learning
+Household Skills for Humanoid Robots with Human Egocentric Videos*".
+
 HELM is a humanoid vision-language-action policy with a world-action context backbone, a vision-language
 feature extractor, and a diffusion action head. This
 repository contains HELM training, control-signal inference, and RoboCasa GR1
@@ -21,23 +24,6 @@ The inference API predicts action chunks.
   into `data/helm_pretrain` as described in `INSTALL.md`.
 - See [`DATA.md`](DATA.md) for dataset sources, access requirements, and the
   expected directory layout.
-
-## Repository layout
-
-```text
-utils/
-  configs/       HELM model, data, and training configuration
-  data/          LeRobot episode loading, sharding, and normalization
-  eval/          RoboCasa GR1 rollout evaluation
-  experiment/    distributed training and checkpoint management
-  model/         HELM backbone, action head, and context module
-  policy/        HelmPolicy and the control-signal server
-  vla/           Internal WAM implementation modules
-scripts/         supported training, inference, and evaluation commands
-```
-
-The public policy class is `utils.policy.HelmPolicy`. Internal package paths are
-implementation details and do not require additional pretrained repositories.
 
 ## Data
 
